@@ -1,47 +1,38 @@
-let map;
+//var ws = new WebSocket("fuzytech.com:47001");
+//ws.onmessage = function (event) {
+ // createMarker(event.data[0], event.data[1]);
+
+fetch("http://fuzytech.com:47001/points.json")
+  .then((response) =>{
+    return response.json();
+  })
+  .then((data) => {
+    console.log(data);
+  });
+
 function initMap() {
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 44.475883,lng: -73.212074},
-    zoom: 15
+  var test = {lat: 43.207010, lng: -70.774210}
+
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 15,
+    center: test
+  });
+  var marker = new google.maps.Marker({
+    position: test,
+    map: map
   });
 }
-let champlain = {lat: 44.4731, lng: -73.2041};
 
-let markerOne = new google.maps.Marker({
-  position: uluru,
-  map: map
-});
-
-/*
-// FOR SHOWING CURRENT LOCATION UNABLE TO USE CURRENTLY VS CODE DOESNT SUPPORT
-//GEOLOCATION NEED TO HOST WEBSITE TO USE
-let infoWindow = new google.maps.InfoWindow;
-
-if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-      let pos = {
-        lat: 44.4731, //position.coords.latitude,
-        lng: -73.2041 //position.coords.longitude
-      };
-
-      infoWindow.setPosition(pos);
-      infoWindow.setContent('Location found.');
-      infoWindow.open(map);
-      map.setCenter(pos);
-    }, function() {
-      handleLocationError(true, infoWindow, map.getCenter());
+function createMarker(lat, lng) {
+  let temp = {lat: lat, lng: lng};
+    marker = new google.maps.Marker({
+      position: temp,
+      center: test
     });
-  } else {
-    // Browser doesn't support Geolocation
-    handleLocationError(false, infoWindow, map.getCenter());
-  }
+}
 
-function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-    infoWindow.setPosition(pos);
-    infoWindow.setContent(browserHasGeolocation ?
-                                                `Error: Not working Chief`:
-                                                `Error: Browser not supporting it.`
-    );
-    infoWindow.open(map);
-    }
-*/
+
+
+
+
+

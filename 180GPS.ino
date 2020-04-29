@@ -26,10 +26,6 @@ void loop(){
     Serial.print(lat);
     Serial.print(" ");
     
-    lcd.setCursor(0,1);
-    lcd.print(",LON:");
-    lcd.setCursor(5,1);
-    lcd.print(lon);
     
    }
   }
