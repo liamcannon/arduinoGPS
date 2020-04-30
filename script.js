@@ -7,6 +7,7 @@ fetch("http://fuzytech.com:47001/points.json")
     return response.json();
   })
   .then((data) => {
+    createMarker(data[0], data[1]);
     console.log(data);
   });
 
